@@ -1,32 +1,33 @@
 from solutions import inputFile
 
-def __decryptMovesList(movesList):
-    for index, move in enumerate(movesList):
-        movesList[index][1] = __encryptedMove[move[1]]
-
 def initialize():
     global __movePoints
-    global __encryptedMove
-
-    global __decryptMove
 
     global __movesList
     global __outcomes
+
+    global __R
+    global __P
+    global __S    
 
     VICTORY = 6
     DRAW = 3
     LOSS = 0
 
+    __R = "A"
+    __P = "B"
+    __S = "C"
+
     __movePoints = {
-        "A": 1,
-        "B": 2,
-        "C": 3
+        __R: 1,
+        __P: 2,
+        __S: 3
     }
 
     __outcomes = {
-        "A": lambda m: VICTORY if m == "C" else (DRAW if m == "A" else LOSS),
-        "B": lambda m: VICTORY if m == "A" else (DRAW if m == "B" else LOSS),
-        "C": lambda m: VICTORY if m == "B" else (DRAW if m == "C" else LOSS)
+        __R: lambda m: VICTORY if m == __S else (DRAW if m == __R else LOSS),
+        __P: lambda m: VICTORY if m == __R else (DRAW if m == __P else LOSS),
+        __S: lambda m: VICTORY if m == __P else (DRAW if m == __S else LOSS)
     }
 
     with open(inputFile("02"), "r") as f:
@@ -34,9 +35,9 @@ def initialize():
 
 def solveFirst():
     encryptedMove = {
-        "X": "A",
-        "Y": "B",
-        "Z": "C"
+        "X": __R,
+        "Y": __P,
+        "Z": __S
     }
 
     points = 0
@@ -49,4 +50,21 @@ def solveFirst():
     return points
 
 def solveSecond():
-    None
+    getVictory = lambda m: __P if m == __R else (__S if m == __P else __R)
+    getDraw = lambda m: m
+    getLoss = lambda m: __S if m == __R else (__R if m == __P else __P)
+
+    encryptedMove = {
+        "X": lambda m: getLoss(m),
+        "Y": lambda m: getDraw(m),
+        "Z": lambda m: getVictory(m)
+    }
+
+    points = 0
+    for round in __movesList:
+        moveToPlay = encryptedMove[round[1]](round[0])
+        roundOutcome = __movePoints[moveToPlay] + __outcomes[moveToPlay](round[0])
+
+        points += roundOutcome
+
+    return points
