@@ -9,8 +9,6 @@ def initialize():
     global __encryptedMove
 
     global __decryptMove
-    global __getMovePoints
-    global __roundPoints
 
     global __movesList
     global __outcomes
@@ -25,28 +23,30 @@ def initialize():
         "C": 3
     }
 
-    __encryptedMove = {
-        "X": "A",
-        "Y": "B",
-        "Z": "C"
-    }
-
     __outcomes = {
         "A": lambda m: VICTORY if m == "C" else (DRAW if m == "A" else LOSS),
         "B": lambda m: VICTORY if m == "A" else (DRAW if m == "B" else LOSS),
         "C": lambda m: VICTORY if m == "B" else (DRAW if m == "C" else LOSS)
     }
 
-    __getMovePoints = lambda m: __movePoints[m]
-    __roundPoints = lambda m: __getMovePoints(m[1]) + __outcomes[m[1]](m[0])
-
     with open(inputFile("02"), "r") as f:
         __movesList = list(map(lambda l: l.split(" "), f.read().splitlines()))
 
-    __decryptMovesList(__movesList)
-
 def solveFirst():
-    return sum([__roundPoints(r) for r in __movesList])
+    encryptedMove = {
+        "X": "A",
+        "Y": "B",
+        "Z": "C"
+    }
+
+    points = 0
+    for round in __movesList:
+        moveToPlay = encryptedMove[round[1]]
+        roundOutcome = __movePoints[moveToPlay] + __outcomes[moveToPlay](round[0])
+
+        points += roundOutcome
+
+    return points
 
 def solveSecond():
     None
