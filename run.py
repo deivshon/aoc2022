@@ -1,14 +1,26 @@
-import problems.solution01
+import solutions.day01
 
 from time import perf_counter_ns
 
+solutionTimeSum = 0
+
 def timeSolution(label, initialize, solutionFirst, solutionSecond):
+    global solutionTimeSum
+
     tas = perf_counter_ns()
     initialize()
     resFirst = solutionFirst()
     resSecond = solutionSecond()
     tae = perf_counter_ns()
 
-    print(f"{label}: {resFirst} - {resSecond} | {(tae - tas) / 1000}ms")
+    msElapsed = (tae - tas) / 1e6
+    solutionTimeSum += msElapsed
 
-timeSolution("1", problems.solution01.initialize, problems.solution01.solveFirst, problems.solution01.solveSecond)
+    print(f"{label}: {resFirst} - {resSecond} | {msElapsed}ms")
+
+    return msElapsed
+
+
+timeSolution("1", solutions.day01.initialize, solutions.day01.solveFirst, solutions.day01.solveSecond)
+
+print(f"\nTotal: {solutionTimeSum}ms")

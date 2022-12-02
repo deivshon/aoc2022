@@ -1,4 +1,4 @@
-from problems import inputFile
+from solutions import inputFile
 
 def __getCaloriesTop(n):
     return sum([sum(e) for e in __sortedElvesList[0:n]])
