@@ -8,7 +8,7 @@ def initialize():
 
     global __R
     global __P
-    global __S    
+    global __S
 
     VICTORY = 6
     DRAW = 3
