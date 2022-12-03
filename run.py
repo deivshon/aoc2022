@@ -1,5 +1,6 @@
 import solutions.day01
 import solutions.day02
+import solutions.day03
 
 from time import perf_counter_ns
 
@@ -24,5 +25,6 @@ def timeSolution(label, initialize, solutionFirst, solutionSecond):
 
 timeSolution("1", solutions.day01.initialize, solutions.day01.solveFirst, solutions.day01.solveSecond)
 timeSolution("2", solutions.day02.initialize, solutions.day02.solveFirst, solutions.day02.solveSecond)
+timeSolution("3", solutions.day03.initialize, solutions.day03.solveFirst, solutions.day03.solveSecond)
 
 print(f"\nTotal: {solutionTimeSum:.5f}ms")
