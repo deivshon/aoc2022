@@ -1,30 +1,61 @@
-import solutions.day01
-import solutions.day02
-import solutions.day03
+import sys
 
 from time import perf_counter_ns
 
-solutionTimeSum = 0
+from solutions import day01
+from solutions import day02
+from solutions import day03
 
-def timeSolution(label, initialize, solutionFirst, solutionSecond):
-    global solutionTimeSum
+INIT = "init"
+FIRST = "first"
+SECOND = "Second"
+
+buildSolution = lambda init, first, second: {
+    INIT: init,
+    FIRST: first,
+    SECOND: second
+}
+
+solutions = (
+    buildSolution(day01.initialize, day01.solveFirst, day01.solveSecond),
+    buildSolution(day02.initialize, day02.solveFirst, day02.solveSecond),
+    buildSolution(day03.initialize, day03.solveFirst, day03.solveSecond)
+)
+
+solutionsTimeSum = 0
+
+def timeSolution(label, solution):
+    global solutionsTimeSum
 
     tas = perf_counter_ns()
-    initialize()
-    resFirst = solutionFirst()
-    resSecond = solutionSecond()
+    solution[INIT]()
+    resFirst = solution[FIRST]()
+    resSecond = solution[SECOND]()
     tae = perf_counter_ns()
 
     msElapsed = (tae - tas) / 1e6
-    solutionTimeSum += msElapsed
+    solutionsTimeSum += msElapsed
 
     print(f"{label}: {resFirst:<8} - {resSecond:>8} | {msElapsed:.5f}ms")
 
     return msElapsed
 
+start = 0
+end = len(solutions)
 
-timeSolution("1", solutions.day01.initialize, solutions.day01.solveFirst, solutions.day01.solveSecond)
-timeSolution("2", solutions.day02.initialize, solutions.day02.solveFirst, solutions.day02.solveSecond)
-timeSolution("3", solutions.day03.initialize, solutions.day03.solveFirst, solutions.day03.solveSecond)
+if len(sys.argv) > 1:
+    try:
+        start = int(sys.argv[1]) - 1
+        end = start + 1
+    except:
+        print("Error: day argument must be an integer", file = sys.stderr)
+        sys.exit(1)
 
-print(f"\nTotal: {solutionTimeSum:.5f}ms")
+if start >= len(solutions) or start < 0:
+        print(f"Error: day {start + 1} solution does not exist", file = sys.stderr)
+        sys.exit(1)
+
+for i in range(start, end):
+    timeSolution(f"{i + 1}", solutions[i])
+
+print(f"\nTotal: {solutionsTimeSum:.5f}ms")
