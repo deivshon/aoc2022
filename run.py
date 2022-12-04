@@ -5,6 +5,7 @@ from time import perf_counter_ns
 from solutions import day01
 from solutions import day02
 from solutions import day03
+from solutions import day04
 
 INIT = "init"
 FIRST = "first"
@@ -19,7 +20,8 @@ buildSolution = lambda init, first, second: {
 solutions = (
     buildSolution(day01.initialize, day01.solveFirst, day01.solveSecond),
     buildSolution(day02.initialize, day02.solveFirst, day02.solveSecond),
-    buildSolution(day03.initialize, day03.solveFirst, day03.solveSecond)
+    buildSolution(day03.initialize, day03.solveFirst, day03.solveSecond),
+    buildSolution(day04.initialize, day04.solveFirst, day04.solveSecond)
 )
 
 solutionsTimeSum = 0
