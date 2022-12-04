@@ -1,12 +1,12 @@
 from solutions import inputFile
 from math import floor
 
-def misplacedItem(rucksack):
+def __misplacedItem(rucksack):
     for r in rucksack[__COMP1]:
         if r in rucksack[__COMP2]:
             return r
 
-def commonItem(rucksacks):
+def __commonItem(rucksacks):
     items = rucksacks[0][__COMP1] + rucksacks[0][__COMP2]
 
     for i in items:
@@ -42,13 +42,13 @@ def initialize():
 def solveFirst():
     prioritiesSum = 0
     for r in __rucksacks:
-        prioritiesSum += __getPriority(misplacedItem(r))
+        prioritiesSum += __getPriority(__misplacedItem(r))
 
     return prioritiesSum
 
 def solveSecond():
     prioritiesSum = 0
     for i in range(0, len(__rucksacks), 3):
-        prioritiesSum += __getPriority(commonItem(__rucksacks[i:i+3]))
+        prioritiesSum += __getPriority(__commonItem(__rucksacks[i:i+3]))
 
     return prioritiesSum
