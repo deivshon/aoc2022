@@ -9,6 +9,7 @@ from solutions import day04
 from solutions import day05
 from solutions import day06
 from solutions import day07
+from solutions import day08
 
 INIT = "init"
 FIRST = "first"
@@ -27,7 +28,8 @@ solutions = (
     buildSolution(day04.initialize, day04.solveFirst, day04.solveSecond),
     buildSolution(day05.initialize, day05.solveFirst, day05.solveSecond),
     buildSolution(day06.initialize, day06.solveFirst, day06.solveSecond),
-    buildSolution(day07.initialize, day07.solveFirst, day07.solveSecond)
+    buildSolution(day07.initialize, day07.solveFirst, day07.solveSecond),
+    buildSolution(day08.initialize, day08.solveFirst, day08.solveSecond)
 )
 
 solutionsTimeSum = 0
@@ -44,7 +46,7 @@ def timeSolution(label, solution):
     msElapsed = (tae - tas) / 1e6
     solutionsTimeSum += msElapsed
 
-    print(f"{label}: {resFirst:<9} - {resSecond:>9} | {msElapsed:.5f}ms")
+    print(f"{label}: {resFirst:<9} - {resSecond:>9} | {msElapsed:>8.5f}ms")
 
     return msElapsed
 
