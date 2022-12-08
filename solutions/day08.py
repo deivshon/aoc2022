@@ -2,37 +2,36 @@ from solutions import inputFile
 
 def __evaluateTree(grid, line, col):
     height = grid[line][col]
-    index = 0
 
     left = 0
     leftVisible = True
-    for index in range(col - 1, -1, -1):
+    for i in range(col - 1, -1, -1):
         left += 1
-        if grid[line][index] >= height:
+        if grid[line][i] >= height:
             leftVisible = False
             break
 
     right = 0
     rightVisible = True
-    for index in range(col + 1, len(grid[line]), 1):
+    for i in range(col + 1, len(grid[line]), 1):
         right += 1
-        if grid[line][index] >= height:
+        if grid[line][i] >= height:
             rightVisible = False
             break
 
     up = 0
     upVisible = True
-    for index in range(line - 1, -1, -1):
+    for i in range(line - 1, -1, -1):
         up += 1
-        if grid[index][col] >= height:
+        if grid[i][col] >= height:
             upVisible = False
             break
 
     down = 0
     downVisible = True
-    for index in range(line + 1, len(grid), 1):
+    for i in range(line + 1, len(grid), 1):
         down += 1
-        if grid[index][col] >= height:
+        if grid[i][col] >= height:
             downVisible = False
             break
 
@@ -48,7 +47,6 @@ def initialize():
     __SCENIC_SCORE = 0
     __VISIBLE = 1
 
-
     with open(inputFile("08"), "r") as f:
         grid = f.read().splitlines()
 
@@ -61,11 +59,11 @@ def initialize():
     for i in range(0, len(grid)):
         for j in range(0, len(grid[i])):
             treeStats = __evaluateTree(grid, i, j)
+
             if treeStats[__SCENIC_SCORE] > __maxScenicScore:
                 __maxScenicScore = treeStats[__SCENIC_SCORE]
             if treeStats[__VISIBLE]:
                 __visibleCount += 1
-
 
 def solveFirst():
     return __visibleCount
