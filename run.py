@@ -10,6 +10,7 @@ from solutions import day05
 from solutions import day06
 from solutions import day07
 from solutions import day08
+from solutions import day09
 
 INIT = "init"
 FIRST = "first"
@@ -29,7 +30,8 @@ solutions = (
     buildSolution(day05.initialize, day05.solveFirst, day05.solveSecond),
     buildSolution(day06.initialize, day06.solveFirst, day06.solveSecond),
     buildSolution(day07.initialize, day07.solveFirst, day07.solveSecond),
-    buildSolution(day08.initialize, day08.solveFirst, day08.solveSecond)
+    buildSolution(day08.initialize, day08.solveFirst, day08.solveSecond),
+    buildSolution(day09.initialize, day09.solveFirst, day09.solveSecond)
 )
 
 solutionsTimeSum = 0
