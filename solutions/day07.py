@@ -13,7 +13,7 @@ def __buildDir(path, lsIndex):
         directory[__DIR_DATA] = {}
 
     lsIndex += 1
-    
+
     while lsIndex < len(__terminalOutput) and __terminalOutput[lsIndex][0] != "$":
         name = __terminalOutput[lsIndex][__LS_NAME]
         type = __terminalOutput[lsIndex][__LS_TYPE]

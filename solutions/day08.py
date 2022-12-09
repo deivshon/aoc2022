@@ -43,7 +43,7 @@ def __evaluateTree(grid, line, col):
 def initialize():
     global __visibleCount
     global __maxScenicScore
-    
+
     __SCENIC_SCORE = 0
     __VISIBLE = 1
 

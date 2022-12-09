@@ -31,15 +31,15 @@ def initialize():
 
     DIRECTION = 0
     AMOUNT = 1
-    
+
     __X = 0
     __Y = 1
 
     with open(inputFile("09"), "r") as f:
         moves = map(lambda l: l.split(" "), f.read().splitlines())
-    
+
     moves = list(map(lambda m: [m[DIRECTION], int(m[AMOUNT])], moves))
-    
+
     rope = [[0, 0] for _ in range(0, 10)]
 
     __firstTailVisited = set()
