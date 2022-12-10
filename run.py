@@ -4,6 +4,18 @@ from time import perf_counter_ns
 
 from solutions.list import *
 
+solutionTests = (
+    solution01,
+    solution02,
+    solution03,
+    solution04,
+    solution05,
+    solution06,
+    solution07,
+    solution08,
+    solution09,
+)
+
 solutionsTimeSum = 0
 
 def timeSolution(label, solution):
