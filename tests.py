@@ -34,3 +34,6 @@ class TestSolutions(unittest.TestCase):
 
     def testDay09(self):
         testDay(self, solution09)
+
+    def testDay10(self):
+        testDay(self, solution10)
