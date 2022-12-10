@@ -31,7 +31,7 @@ def timeSolution(label, solution):
     msElapsed = (tae - tas) / 1e6
     solutionsTimeSum += msElapsed
 
-    print(f"{label}: {resFirst:<9} - {resSecond:>9} | {msElapsed:>8.5f}ms")
+    print(f"{label:>2}: {resFirst:<9} - {resSecond:>9} | {msElapsed:>8.5f}ms")
 
     return msElapsed
 

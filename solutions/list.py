@@ -72,4 +72,4 @@ solution10 = __buildTest(
     day10.initialize,
     day10.solveFirst,
     day10.solveSecond,
-    14780, 1)
+    14780, "ELPLZGZL")
