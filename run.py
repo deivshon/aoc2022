@@ -14,7 +14,8 @@ solutionTests = (
     solution07,
     solution08,
     solution09,
-    solution10
+    solution10,
+    solution11
 )
 
 solutionsTimeSum = 0

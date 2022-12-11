@@ -8,6 +8,7 @@ from solutions import day07
 from solutions import day08
 from solutions import day09
 from solutions import day10
+from solutions import day11
 
 INIT = "init"
 FIRST = "first"
@@ -73,3 +74,8 @@ solution10 = __buildTest(
     day10.solveFirst,
     day10.solveSecond,
     14780, "ELPLZGZL")
+solution11 = __buildTest(
+    day11.initialize,
+    day11.solveFirst,
+    day11.solveSecond,
+    118674, -1)
